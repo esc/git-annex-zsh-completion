@@ -19,13 +19,13 @@ case $state in
 (command)
     local -a cmds
     cmds=(
-        add:'add files to the annex'
-        drop:'useful description after the colon'
+        add:'adds files in the path to the annex'
+        drop:'drops the content of annexed files from this repository'
         describe:'changes the description of a repository'
-        get
-        map
-        move
-        status
+        get:'makes  the  content of annexed files available in this repository'
+        map:'generate a visual map of repositories'
+        move:'move files from/to repositories'
+        status:'displays some statistics and other information'
     )
     _describe -t commands command cmds
     ;;
