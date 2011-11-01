@@ -21,6 +21,7 @@ case $state in
     cmds=(
         add:'add files to the annex'
         drop:'useful description after the colon'
+        describe:'changes the description of a repository'
         get
         map
         move
