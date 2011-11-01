@@ -1,0 +1,42 @@
+#compdef git-annex
+#description:managing files while ignoring their content
+
+local state line context
+local -A opt_args
+
+local -a arguments
+arguments=(
+    '--force[force something]'
+    '--fast[don'\''t be slow]'
+    '--verbose[tell me more]'
+    ': :->command'
+    '*:: :->subcmd'
+)
+
+_arguments -C $arguments
+
+case $state in
+(command)
+    local -a cmds
+    cmds=(
+        add:'add files to the annex'
+        drop:'useful description after the colon'
+        get
+        map
+        move
+        status
+    )
+    _describe -t commands command cmds
+    ;;
+(subcmd)
+    case ${line[1]} in
+    (map|status)
+        _message 'No more arguments'
+        ;;
+    (*)
+        _path_files
+        ;;
+    esac
+    ;;
+esac
+
