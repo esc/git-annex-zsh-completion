@@ -20,12 +20,38 @@ case $state in
     local -a cmds
     cmds=(
         add:'adds files in the path to the annex'
+        addurl:
+        copy:
         drop:'drops the content of annexed files from this repository'
+        dropkey:
+        dropunused:
         describe:'changes the description of a repository'
+        edit:
+        find:
+        fix:
+        fromkey:
+        fsck:
         get:'makes  the  content of annexed files available in this repository'
+        init:
+        initremote:
+        lock:
         map:'generate a visual map of repositories'
+        merge:
+        migrate:
         move:'move files from/to repositories'
+        pre-commit:
+        semitrust:
         status:'displays some statistics and other information'
+        setkey:
+        trust:
+        unannex:
+        uninit:
+        unlock:
+        untrust:
+        unused:
+        upgrade:
+        version:
+        whereis:
     )
     _describe -t commands command cmds
     ;;
