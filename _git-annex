@@ -6,9 +6,22 @@ local -A opt_args
 
 local -a arguments
 arguments=(
+    '--debug'
+    '--exclude=glob'
+    '--backend=name'
+    '-c name=value'
     '--force[force something]'
+    '--from=repository'
     '--fast[don'\''t be slow]'
+    '--json'
+    '--key=name'
+    '--numcopies=n'
+    '--to=repository'
+    '--semitrust=repository'
+    '--trust=repository'
+    '--untrust=repository'
     '--verbose[tell me more]'
+    '--quiet'
     ': :->command'
     '*:: :->subcmd'
 )
