@@ -10,6 +10,12 @@
 # Skeleton implementation by Frank Terbeck <ft@bewatermyfriend.org>
 # Blanks filled in by Valentin Haenel <valentin.haenel@gmx.de>
 # Licence: WTFPL (http://sam.zoy.org/wtfpl/)
+#
+# To use this completion drop it somewhere in you $fpath, e.g.:
+#
+#     $ git clone $CLONEURL
+#     $ fpath+=$PWD/git-annex-zsh-completion
+#     $ compinit git-annex
 
 local state line context
 local -A opt_args
