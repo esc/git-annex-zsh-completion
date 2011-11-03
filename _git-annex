@@ -1,6 +1,11 @@
 #compdef git-annex
 #description:managing files while ignoring their content
 
+# ZSH Completion for git-annex (http://git-annex.branchable.com/)
+# Skeleton implementation by Frank Terbeck <ft@bewatermyfriend.org>
+# Blanks filled in by Valentin Haenel <valentin.haenel@gmx.de>
+# Licence: WTFPL (http://sam.zoy.org/wtfpl/)
+
 local state line context
 local -A opt_args
 
