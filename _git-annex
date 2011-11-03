@@ -2,6 +2,11 @@
 #description:managing files while ignoring their content
 
 # ZSH Completion for git-annex (http://git-annex.branchable.com/)
+#
+# This completion was written for git-annex version: 3.20111011~bpo60+2
+#
+# Note that this completion is still very much early alpha work in progress.
+#
 # Skeleton implementation by Frank Terbeck <ft@bewatermyfriend.org>
 # Blanks filled in by Valentin Haenel <valentin.haenel@gmx.de>
 # Licence: WTFPL (http://sam.zoy.org/wtfpl/)
