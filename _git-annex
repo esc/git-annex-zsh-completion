@@ -28,6 +28,7 @@ arguments=(
     '(-x --exclude=)'{-x,--exclude=}'[skips files matching the globbing pattern]'
     '(-b --backend=)'{-b,--backend=}'[specifies which key-value backend to use]'
     '-c name=-[override git configuration settings]'
+    '(-C --copies=)'{-C,--copies=}'[skip files with fewer copies]'
     '--force[force unsafe actions]'
     '(-f --from=)'{-f,--from}'[copy/move from repository]'
     '(-F --fast)'{-F,--fast}'[less expensive version of some commands]'
