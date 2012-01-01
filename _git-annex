@@ -20,13 +20,19 @@
 local state line context
 local -A opt_args
 
+__annex_backend(){
+    local -a backends
+    backends=(SHA256 SHA1 SHA512 SHA224 SHA384 SHA256E SHA1E SHA512E SHA224E SHA384E WORM URL)
+    _describe -t backends backend backends
+}
+
 local -a arguments
 arguments=(
     '--and[both previous and next option match]'
     '(-a --auto)'{-a,--auto}'[automatic mode]'
     '(-d --debug)'{-d,--debug}'[show debug messages]'
     '(-x --exclude=)'{-x,--exclude=}'[skips files matching the globbing pattern]'
-    '(-b --backend=)'{-b,--backend=}'[specifies which key-value backend to use]'
+    '(-b --backend=)'{-b,--backend=}'[specifies which key-value backend to use]::backend:__annex_backend'
     '-c name=-[override git configuration settings]'
     '(-C --copies=)'{-C,--copies=}'[skip files with fewer copies]'
     '--force[force unsafe actions]'
