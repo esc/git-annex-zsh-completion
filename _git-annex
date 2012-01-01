@@ -22,7 +22,12 @@ local -A opt_args
 
 __annex_backend(){
     local -a backends
-    backends=(SHA256 SHA1 SHA512 SHA224 SHA384 SHA256E SHA1E SHA512E SHA224E SHA384E WORM URL)
+    backends=($(git annex status --fast --json |
+    python -c "
+import sys
+import json
+parsed = json.loads(sys.stdin.read())
+print ' '.join(parsed['supported backends'])"))
     _describe -t backends backend backends
 }
 
