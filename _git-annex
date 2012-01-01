@@ -41,7 +41,7 @@ arguments=(
     '-c name=-[override git configuration settings]'
     '(-C --copies=)'{-C,--copies=}'[skip files with fewer copies]'
     '--force[force unsafe actions]'
-    '(-f --from=)'{-f,--from}'[copy/move from repository]'
+    '(-f --from=)'{-f,--from=}'[copy/move from repository]'
     '(-F --fast)'{-F,--fast}'[less expensive version of some commands]'
     '(-i --in=)'{-i,--in=}'[skip files not present in a remote]'
     '(-j --json)'{-j,--json}'[generate machine readable JSON]'
