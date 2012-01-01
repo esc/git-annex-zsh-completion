@@ -31,6 +31,45 @@ print ' '.join(parsed['supported backends'])"))
     _describe -t backends backend backends
 }
 
+__annex_repository(){
+
+    local -a currents
+    currents=(\.)
+    _describe -t currents current currents
+
+    local -a descriptions
+    descriptions=($(git annex status --fast --json |
+    python -c "
+import sys
+import json
+parsed = json.loads(sys.stdin.read())
+descriptions = []
+for repo in (parsed['trusted repositories']
+        + parsed['semitrusted repositories']
+        + parsed['untrusted repositories']):
+    descriptions.append(repo['description'])
+print ' '.join(descriptions)"))
+    _describe -t descriptions description descriptions
+
+    local -a remotes
+    remotes=($(git remote))
+    _describe -t remotes 'configured remote' remotes
+
+    local -a uuids
+    uuids=($(git annex status --fast --json |
+    python -c "
+import sys
+import json
+parsed = json.loads(sys.stdin.read())
+uuids = []
+for repo in (parsed['trusted repositories']
+        + parsed['semitrusted repositories']
+        + parsed['untrusted repositories']):
+    uuids.append(repo['uuid'])
+print ' '.join(uuids)"))
+    _describe -t uuids uuid uuids
+}
+
 local -a arguments
 arguments=(
     '--and[both previous and next option match]'
@@ -41,18 +80,18 @@ arguments=(
     '-c name=-[override git configuration settings]'
     '(-C --copies=)'{-C,--copies=}'[skip files with fewer copies]'
     '--force[force unsafe actions]'
-    '(-f --from=)'{-f,--from=}'[copy/move from repository]'
+    '(-f --from=)'{-f,--from=}'[copy/move from repository]:repository:__annex_repository'
     '(-F --fast)'{-F,--fast}'[less expensive version of some commands]'
-    '(-i --in=)'{-i,--in=}'[skip files not present in a remote]'
+    '(-i --in=)'{-i,--in=}'[skip files not present in a remote]:repository:__annex_repository'
     '(-j --json)'{-j,--json}'[generate machine readable JSON]'
     '(-k --key=)'{-k,--key=}'[specifies a key to operate on]'
     '(-N --numcopies=)'{-N,--numcopies=}'[overrides annex.numcopies]'
     '--not[negate next option]'
     '--or[either previous or next option match]'
-    '(-t --to=)'{-t,--to=}'[copy/move to repository]'
-    '--semitrust=-[override trust settings]'
-    '--trust=-[override trust settings]'
-    '--untrust=-[override trust settings]'
+    '(-t --to=)'{-t,--to=}'[copy/move to repository]:repository:__annex_repository'
+    '--semitrust=-[override trust settings]:repository:__annex_repository'
+    '--trust=-[override trust settings]:repository:__annex_repository'
+    '--untrust=-[override trust settings]:repository:__annex_repository'
     '--verbose[verbose display]'
     '--quiet'
     '-([open group of options]'
