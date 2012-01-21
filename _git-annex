@@ -91,6 +91,7 @@ arguments=(
     '(-N --numcopies=)'{-N,--numcopies=}'[overrides annex.numcopies]'
     '--not[negate next option]'
     '--or[either previous or next option match]'
+    '--print0[output filenames terminated with nulls, for  use  with  xargs -0]'
     '(-t --to=)'{-t,--to=}'[copy/move to repository]:repository:__annex_repository'
     '--semitrust=-[override trust settings]:repository:__annex_repository'
     '--trust=-[override trust settings]:repository:__annex_repository'
