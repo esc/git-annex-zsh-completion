@@ -107,43 +107,63 @@ _arguments -C $arguments
 
 case $state in
 (command)
-    local -a cmds
-    cmds=(
+    local -a common
+    local -a setup
+    local -a maintenance
+    local -a query
+    local -a utility
+    local -a plumbing
+    common=(
         add:'adds files in the path to the annex'
-        addurl:'downloads each url to a file, which is added to the annex.'
-        copy:'copy from/to repositories'
-        drop:'drops the content of annexed files from this repository'
-        dropkey:'drop annexd data for specified keys'
-        dropunused:'drop unused data, as reported by unused'
-        describe:'changes the description of a repository'
-        edit:'alias for the unlock command'
-        find:'search for present/missing files in current annex'
-        fix:'fix up symlinks that have become broken'
-        fromkey:'set file to link to given key'
-        fsck:'check annex consistency'
         get:'makes the content of annexed files available in this repository'
-        init:'initialize an annex'
-        initremote:'set up a special remote'
-        lock:'lock file again after editing'
-        map:'generate a visual map of repositories'
-        merge:'merge the git-annex branches of remotes'
-        migrate:'migrate annexd files to new backend'
+        drop:'drops the content of annexed files from this repository'
         move:'move files from/to repositories'
-        pre-commit:'fixes up symlinks that are staged as part of a commit'
-        semitrust:'returns a repository to the default semi trusted state'
-        status:'displays some statistics and other information'
-        setkey:'sets the annexed data for a key to the content of the specified file, and then removes the file.'
+        copy:'copy from/to repositories'
+        unlock:'unlock a file for editing'
+        edit:'alias for the unlock command'
+        lock:'lock file again after editing'
+        addurl:'downloads each url to a file, which is added to the annex.'
+        )
+    setup=(
+        init:'initialize an annex'
+        describe:'changes the description of a repository'
+        initremote:'set up a special remote'
         trust:'records that a repository is trusted to not  unexpectedly  lose  content'
+        untrust:'records that a repository is not trusted and could lose content at any time'
+        semitrust:'returns a repository to the default semi trusted state'
+        )
+    maintenance=(
+        fsck:'check annex consistency'
+        unused:'check for data that has no symlinks pointing to it'
+        dropunused:'drop unused data, as reported by unused'
+        merge:'merge the git-annex branches of remotes'
+        fix:'fix up symlinks that have become broken'
+        upgrade:'upgrades the repository to current layout'
+        )
+    query=(
+        version:'print version and repository information'
+        find:'search for present/missing files in current annex'
+        whereis:'show all repositories that contain a file'
+        status:'displays some statistics and other information'
+        map:'generate a visual map of repositories'
+        )
+    utility=(
+        migrate:'migrate annexd files to new backend'
         unannex:'undo an accidental git annex add command'
         uninit:'stop using git-annex entirely'
-        unlock:'unlock a file for editing'
-        untrust:'records that a repository is not trusted and could lose content at any time'
-        unused:'check for data that has no symlinks pointing to it'
-        upgrade:'upgrades the repository to current layout'
-        version:'print version and repository information'
-        whereis:'show all repositories that contain a file'
+        )
+    plumbing=(
+        pre-commit:'fixes up symlinks that are staged as part of a commit'
+        dropkey:'drop annexd data for specified keys'
+        fromkey:'set file to link to given key'
+        setkey:'sets the annexed data for a key to the content of the specified file, and then removes the file.'
     )
-    _describe -t commands command cmds
+    _describe -t common_commands "common commands" common
+    _describe -t setup_commands "setup commands"  setup
+    _describe -t maintenance_commands "maintenance commands"  setup
+    _describe -t query_commands "query commands"  query
+    _describe -t utility_commands "utility commands"  utility
+    _describe -t plumbing_commands "plumbing commands"  plumbing
     ;;
 (subcmd)
     case ${line[1]} in
