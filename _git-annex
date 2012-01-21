@@ -155,9 +155,9 @@ case $state in
         )
     plumbing=(
         pre-commit:'fixes up symlinks that are staged as part of a commit'
+        reinject:'moves a src file into the annex as the content of the dest file.'
         dropkey:'drop annexd data for specified keys'
         fromkey:'set file to link to given key'
-        setkey:'sets the annexed data for a key to the content of the specified file, and then removes the file.'
     )
     _describe -t common_commands "common commands" common
     _describe -t setup_commands "setup commands"  setup
