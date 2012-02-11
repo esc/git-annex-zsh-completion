@@ -161,7 +161,7 @@ case $state in
     )
     _describe -t common_commands "common commands" common
     _describe -t setup_commands "setup commands"  setup
-    _describe -t maintenance_commands "maintenance commands"  setup
+    _describe -t maintenance_commands "maintenance commands"  maintenance
     _describe -t query_commands "query commands"  query
     _describe -t utility_commands "utility commands"  utility
     _describe -t plumbing_commands "plumbing commands"  plumbing
