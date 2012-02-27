@@ -19,6 +19,14 @@
 #     $ git clone $CLONEURL
 #     $ fpath+=$PWD/git-annex-zsh-completion
 #     $ compinit git-annex
+#
+# TODO
+# ----
+#
+# * '--from' and '--to' need a configured remote, '--in' etc.. don't, and can
+#   work with descriptions and uuids too.
+# * 'git annex add' to only complete files not in annex
+#
 
 local state line context
 local -A opt_args
