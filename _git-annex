@@ -23,8 +23,6 @@
 # TODO
 # ----
 #
-# * '--from' and '--to' need a configured remote, '--in' etc.. don't, and can
-#   work with descriptions and uuids too.
 # * 'git annex add' to only complete files not in annex
 #
 
@@ -97,7 +95,7 @@ arguments=(
     '-c name=-[override git configuration settings]'
     '(-C --copies=)'{-C,--copies=}'[skip files with fewer copies]'
     '--force[force unsafe actions]'
-    '(-f --from=)'{-f,--from=}'[copy/move from repository]:repository:__annex_repository'
+    '(-f --from=)'{-f,--from=}'[copy/move from repository]:repository:__annex_remotes'
     '(-F --fast)'{-F,--fast}'[less expensive version of some commands]'
     '(-i --in=)'{-i,--in=}'[skip files not present in a remote]:repository:__annex_repository'
     '(-j --json)'{-j,--json}'[generate machine readable JSON]'
@@ -106,7 +104,7 @@ arguments=(
     '--not[negate next option]'
     '--or[either previous or next option match]'
     '--print0[output filenames terminated with nulls, for  use  with  xargs -0]'
-    '(-t --to=)'{-t,--to=}'[copy/move to repository]:repository:__annex_repository'
+    '(-t --to=)'{-t,--to=}'[copy/move to repository]:repository:__annex_remotes'
     '--semitrust=-[override trust settings]:repository:__annex_repository'
     '--trust=-[override trust settings]:repository:__annex_repository'
     '--untrust=-[override trust settings]:repository:__annex_repository'
