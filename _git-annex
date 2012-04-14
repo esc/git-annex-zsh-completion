@@ -42,11 +42,21 @@ print ' '.join(parsed['supported backends'])"))
     _describe -t backends backend backends
 }
 
+__annex_remotes(){
+
+    local -a remotes
+    remotes=($(git remote))
+    _describe -t remotes 'configured remote' remotes
+
+}
+
 __annex_repository(){
 
     local -a currents
     currents=(\.)
     _describe -t currents current currents
+
+    __annex_remotes
 
     local -a descriptions
     descriptions=($(git annex status --fast --json |
@@ -61,10 +71,6 @@ for repo in (parsed['trusted repositories']
     descriptions.append(repo['description'])
 print ' '.join(descriptions)"))
     _describe -t descriptions description descriptions
-
-    local -a remotes
-    remotes=($(git remote))
-    _describe -t remotes 'configured remote' remotes
 
     local -a uuids
     uuids=($(git annex status --fast --json |
@@ -131,6 +137,7 @@ case $state in
         unlock:'unlock a file for editing'
         edit:'alias for the unlock command'
         lock:'lock file again after editing'
+        sync:'synchronise with one or more remotes'
         addurl:'downloads each url to a file, which is added to the annex.'
         )
     setup=(
@@ -178,6 +185,9 @@ case $state in
     case ${line[1]} in
     (map|status)
         _message 'No more arguments'
+        ;;
+    (sync)
+        __annex_remotes
         ;;
     (*)
         _arguments -C $arguments
