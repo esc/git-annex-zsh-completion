@@ -51,7 +51,7 @@ __annex_remotes(){
 __annex_repository(){
 
     local -a currents
-    currents=(\.)
+    currents=('here')
     _describe -t currents current currents
 
     __annex_remotes
