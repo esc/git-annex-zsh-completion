@@ -186,6 +186,7 @@ case $state in
         ;;
     (sync)
         __annex_remotes
+        return true
         ;;
     (*)
         _arguments -C $arguments
