@@ -118,6 +118,12 @@ arguments=(
 
 _arguments -C $arguments
 
+local -a watch_arguments
+watch_arguments=(
+    '--foreground[do not daemonize]'
+    '--stop[stop the daemon]'
+)
+
 case $state in
 (command)
     local -a common
@@ -137,6 +143,9 @@ case $state in
         lock:'lock file again after editing'
         sync:'synchronise with one or more remotes'
         addurl:'downloads each url to a file, which is added to the annex.'
+        watch:'watches for changes and automatically add files'
+        assistant:'like watch but automatically syncs changes to other remotes'
+        webapp:'runs a web app to setup and control the git-annex assistant'
         )
     setup=(
         init:'initialize an annex'
@@ -187,6 +196,9 @@ case $state in
     (sync)
         __annex_remotes
         return true
+        ;;
+    (watch|assistant)
+        _arguments -C $watch_arguments
         ;;
     (*)
         _arguments -C $arguments
