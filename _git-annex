@@ -154,6 +154,7 @@ case $state in
         trust:'records that a repository is trusted to not  unexpectedly  lose  content'
         untrust:'records that a repository is not trusted and could lose content at any time'
         semitrust:'returns a repository to the default semi trusted state'
+        dead:'Indicates that the repository has been irretrevably lost.  (To undo, use semitrust.)'
         )
     maintenance=(
         fsck:'check annex consistency'
