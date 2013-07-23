@@ -191,6 +191,10 @@ case $state in
     ;;
 (subcmd)
     case ${line[1]} in
+    (trust|untrust|semitrust|dead)
+        __annex_repository
+        return true
+        ;;
     (map|status)
         _message 'No more arguments'
         ;;
